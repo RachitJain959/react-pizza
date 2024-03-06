@@ -129,11 +129,11 @@ export async function action({ request }) {
   if (Object.keys(errors).length > 0) return errors;
 
   // Else if everything ok, newOrder obj gets created & redirected to orderId pg.
-  //   const newOrder = await createOrder(order);
+  const newOrder = await createOrder(order);
 
-  //   return redirect(`/order/${newOrder.id}`);
+  return redirect(`/order/${newOrder.id}`);
 
-  return null;
+  //   return null;
 }
 
 export default CreateOrder;
