@@ -1,12 +1,12 @@
 // Test ID: IIDSAT
 
-import { useLoaderData } from 'react-router-dom';
-import { getOrder } from '../../services/apiRestaurant';
+import { useLoaderData } from "react-router-dom";
+import { getOrder } from "../../services/apiRestaurant";
 import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
-} from '../../utils/helpers';
+} from "../../utils/helpers";
 
 // TEST order
 // const order = {
@@ -60,13 +60,19 @@ function Order() {
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
-    <div>
-      <div>
-        <h2>Status</h2>
+    <div className="space-y-8 px-4 py-6">
+      <div className="flex flex-wrap items-center justify-between">
+        <h2 className="text-xl font-semibold">Order #{id} Status</h2>
 
-        <div>
-          {priority && <span>Priority</span>}
-          <span> {status} order</span>
+        <div className="space-x-2">
+          {priority && (
+            <span className="rounded-full bg-red-500 px-3 py-1 text-sm uppercase tracking-wide text-red-50">
+              Priority
+            </span>
+          )}
+          <span className="rounded-full bg-green-500 px-3 py-1 text-sm uppercase tracking-wide text-green-50 ">
+            {status} order
+          </span>
         </div>
       </div>
 
@@ -74,7 +80,7 @@ function Order() {
         <p>
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
-            : 'Order should have arrived'}
+            : "Order should have arrived"}
         </p>
         <p>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
       </div>
