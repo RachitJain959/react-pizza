@@ -55,7 +55,11 @@ function CreateOrder() {
           <label className="sm:basis-40">Phone number</label>
           <div className="grow">
             <input type="tel" name="phone" required className="input w-full" />
-            {formErrors && <p>{formErrors.phone}</p>}
+            {formErrors && (
+              <p className="mt-2 rounded-md bg-red-100 px-3 py-2 text-xs text-red-700">
+                {formErrors.phone}
+              </p>
+            )}
           </div>
         </div>
 
@@ -71,7 +75,7 @@ function CreateOrder() {
           </div>
         </div>
 
-        <div>
+        <div className="mb-12 flex items-center gap-5">
           <input
             type="checkbox"
             name="priority"
@@ -80,7 +84,9 @@ function CreateOrder() {
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label htmlFor="priority" className="font-semibold">
+            Want to give your order priority?
+          </label>
         </div>
 
         <div>
@@ -114,9 +120,11 @@ export async function action({ request }) {
   if (Object.keys(errors).length > 0) return errors;
 
   // Else if everything ok, newOrder obj gets created & redirected to orderId pg.
-  const newOrder = await createOrder(order);
+  //   const newOrder = await createOrder(order);
 
-  return redirect(`/order/${newOrder.id}`);
+  //   return redirect(`/order/${newOrder.id}`);
+
+  return null;
 }
 
 export default CreateOrder;
