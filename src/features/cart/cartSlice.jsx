@@ -64,3 +64,5 @@ export const getTotalCartQuantity = (state) =>
 // check 'reselect' from redux to optimize performance
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
+export const getCart = (state) => state.user.username;
