@@ -1,5 +1,6 @@
 import { useFetcher } from "react-router-dom";
 import Button from "../../ui/Button";
+import { updateOrder } from "../../services/apiRestaurant";
 
 function UpdateOrderPriority({ order }) {
   const fetcher = useFetcher();
@@ -14,6 +15,8 @@ function UpdateOrderPriority({ order }) {
 export default UpdateOrderPriority;
 
 export async function action({ request, params }) {
-  console.log("update");
+  const data = { priority: true };
+  await updateOrder(params.orderId, data);
+
   return null;
 }
