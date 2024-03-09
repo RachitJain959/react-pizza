@@ -23,6 +23,7 @@ function CreateOrder() {
     status: addressStatus,
     position,
     address,
+    error: errorAddress,
   } = useSelector((state) => state.user);
   const isLoadingAddress = addressStatus === "loading";
 
@@ -78,9 +79,15 @@ function CreateOrder() {
               required
               className="input w-full"
             />
+            {addressStatus === "error" && (
+              <p className="mt-2 rounded-md bg-red-100 px-3 py-2 text-xs text-red-700">
+                {errorAddress}
+              </p>
+            )}
           </div>
-          {!position.latitude && !position.longitude && (
-            <span className="absolute right-[3px]">
+
+          {!position && (
+            <span className="absolute right-[3px] top-[3px] z-50 md:right-[5px] md:top-[5px]">
               <Button
                 disabled={isLoadingAddress}
                 type="small"
@@ -111,6 +118,14 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+          <input
+            type="hidden"
+            name="position"
+            value={
+              position ? `${position.latitude}, ${position.longitude}` : ""
+            }
+          />
+
           <Button disabled={isSubmitting || isLoadingAddress} type="primary">
             {isSubmitting
               ? "Placing order..."
