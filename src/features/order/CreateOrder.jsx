@@ -147,6 +147,8 @@ export async function action({ request }) {
     priority: data.priority === "true",
   };
 
+  console.log(order);
+
   // If phone number invalid, action will return errors obj which will be obtained above using
   // useActionData() & we will conditionally render the exact error msg on obtaining the error.
   const errors = {};

@@ -6,8 +6,8 @@ import { clearCart, getCart } from "./cartSlice";
 import EmptyCart from "./EmptyCart";
 
 function Cart() {
-  const cart = useSelector((state) => state.cart.cart);
-  const username = useSelector(getCart);
+  const cart = useSelector(getCart);
+  const username = useSelector((state) => state.user.username);
   const dispatch = useDispatch();
 
   //   const cart = fakeCart;
